@@ -1,9 +1,9 @@
+import { format } from 'date-fns';
+import { History, MapPin, Calendar, Clock, ArrowRight, Truck, User } from 'lucide-react-native';
+import { useColorScheme } from 'nativewind';
 import React, { useState, useEffect } from 'react';
 import { View, Text, ScrollView, SafeAreaView, TouchableOpacity, RefreshControl } from 'react-native';
-import { History, MapPin, Calendar, Clock, ArrowRight, Truck, User } from 'lucide-react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
-import { useColorScheme } from 'nativewind';
-import { format } from 'date-fns';
 import api from '../../../lib/api';
 
 export default function TripsScreen() {

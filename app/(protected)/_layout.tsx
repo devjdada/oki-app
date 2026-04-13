@@ -1,21 +1,10 @@
-import React from 'react';
-import { Drawer } from 'expo-router/drawer';
-import {
-  GestureHandlerRootView
-} from 'react-native-gesture-handler';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  SafeAreaView,
-  Image
-} from 'react-native';
 import {
   DrawerContentScrollView,
   DrawerItemList,
   DrawerItem
 } from '@react-navigation/drawer';
+import { useRouter } from 'expo-router';
+import { Drawer } from 'expo-router/drawer';
 import {
   LayoutDashboard,
   LogOut,
@@ -29,9 +18,20 @@ import {
   Truck,
   Box
 } from 'lucide-react-native';
-import { useAuthStore } from '../../store/auth';
-import { useRouter } from 'expo-router';
 import { useColorScheme } from 'nativewind';
+import React from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  SafeAreaView,
+  Image
+} from 'react-native';
+import {
+  GestureHandlerRootView
+} from 'react-native-gesture-handler';
+import { useAuthStore } from '../../store/auth';
 
 function CustomDrawerContent(props: any) {
   const { user, logout } = useAuthStore();

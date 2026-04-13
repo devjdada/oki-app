@@ -1,6 +1,3 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, ScrollView, TouchableOpacity, RefreshControl } from 'react-native';
-import { useColorScheme } from 'nativewind';
 import { 
   Box, 
   Wrench, 
@@ -10,6 +7,9 @@ import {
   ChevronRight,
   Plus
 } from 'lucide-react-native';
+import { useColorScheme } from 'nativewind';
+import React, { useEffect, useState } from 'react';
+import { View, Text, ScrollView, TouchableOpacity, RefreshControl } from 'react-native';
 import api from '../../../lib/api';
 
 export default function CMMSDashboard() {
@@ -20,6 +20,7 @@ export default function CMMSDashboard() {
 
   const fetchData = async () => {
     setLoading(true);
+
     try {
       const response = await api.get('/cmms/dashboard');
       setData(response.data.data);

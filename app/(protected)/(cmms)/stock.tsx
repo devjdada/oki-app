@@ -1,7 +1,7 @@
+import { Package, AlertTriangle, ArrowDown, ChevronRight } from 'lucide-react-native';
+import { useColorScheme } from 'nativewind';
 import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, TouchableOpacity, ActivityIndicator, RefreshControl } from 'react-native';
-import { useColorScheme } from 'nativewind';
-import { Package, AlertTriangle, ArrowDown, ChevronRight } from 'lucide-react-native';
 import api from '../../../lib/api';
 
 export default function StockScreen() {

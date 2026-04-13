@@ -1,3 +1,15 @@
+import { format } from 'date-fns/format';
+import { useRouter } from 'expo-router';
+import { 
+  Mail, 
+  Search, 
+  Plus, 
+  Inbox, 
+  Send, 
+  MessageSquare,
+  ChevronRight,
+  Circle
+} from 'lucide-react-native';
 import React, { useState, useEffect } from 'react';
 import { 
   View, 
@@ -9,19 +21,7 @@ import {
   ActivityIndicator,
   RefreshControl
 } from 'react-native';
-import { 
-  Mail, 
-  Search, 
-  Plus, 
-  Inbox, 
-  Send, 
-  MessageSquare,
-  ChevronRight,
-  Circle
-} from 'lucide-react-native';
-import { useRouter } from 'expo-router';
 import Animated, { FadeInDown } from 'react-native-reanimated';
-import { format } from 'date-fns/format';
 
 import api from '../../../../lib/api';
 import { useAuthStore } from '../../../../store/auth';

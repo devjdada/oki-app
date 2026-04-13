@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, TextInputProps, TouchableOpacity } from 'react-native';
-import { clsx, type ClassValue } from 'clsx';
-import { twMerge } from 'tailwind-merge';
+import { clsx  } from 'clsx';
+import type {ClassValue} from 'clsx';
 import { Eye, EyeOff } from 'lucide-react-native';
+import React, { useState } from 'react';
+import type { TextInputProps} from 'react-native';
+import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { twMerge } from 'tailwind-merge';
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));

@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, ScrollView, SafeAreaView, TouchableOpacity, RefreshControl, Modal, TextInput, ActivityIndicator } from 'react-native';
+import { format } from 'date-fns/format';
 import { 
   Calendar, 
   Plus, 
@@ -16,12 +15,13 @@ import {
   UserCheck,
   AlertCircle
 } from 'lucide-react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, ScrollView, SafeAreaView, TouchableOpacity, RefreshControl, Modal, TextInput, ActivityIndicator } from 'react-native';
 import Animated, { FadeInDown, FadeInUp } from 'react-native-reanimated';
-import { format } from 'date-fns/format';
 
-import api from '../../../lib/api';
 import AppButton from '../../../components/AppButton';
 import AppInput from '../../../components/AppInput';
+import api from '../../../lib/api';
 
 export default function LeaveScreen() {
   const [loading, setLoading] = useState(true);
@@ -70,10 +70,12 @@ export default function LeaveScreen() {
   const handleApplyLeave = async () => {
     if (!leaveType || !startDate || !endDate || !reason || !vouchStaffId) {
       alert('Please fill in all fields');
+
       return;
     }
 
     setFormLoading(true);
+
     try {
       await api.post('/staff/leaves', {
         type: leaveType,
@@ -101,7 +103,10 @@ export default function LeaveScreen() {
   };
 
   const handleVouchAction = async (status: 'vouched' | 'rejected', remarks: string) => {
-    if (!selectedVouch) return;
+    if (!selectedVouch) {
+return;
+}
+
     try {
       await api.patch(`/staff/leaves/${selectedVouch.id}/vouch`, { status, remarks });
       setIsVouchingOpen(false);
@@ -284,6 +289,7 @@ export default function LeaveScreen() {
 
 function BalanceCard({ label, value, icon, color }: any) {
   const bgColors: any = { blue: 'bg-blue-50', emerald: 'bg-emerald-50', amber: 'bg-amber-50' };
+
   return (
     <View className="bg-white p-5 rounded-3xl border border-slate-100 shadow-sm w-[31%]">
       <View className={`w-10 h-10 rounded-xl ${bgColors[color]} items-center justify-center mb-3`}>

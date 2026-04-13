@@ -1,8 +1,8 @@
+import { Search, Filter, ChevronRight, Mail, Phone, MapPin, Users } from 'lucide-react-native';
+import { useColorScheme } from 'nativewind';
 import React, { useState } from 'react';
 import { View, Text, ScrollView, SafeAreaView, TouchableOpacity, TextInput, Image } from 'react-native';
-import { Search, Filter, ChevronRight, Mail, Phone, MapPin, Users } from 'lucide-react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
-import { useColorScheme } from 'nativewind';
 
 const MOCK_STAFF = [
   { id: 1, name: 'John Doe', designation: 'General Manager', department: 'Operations', initials: 'JD' },

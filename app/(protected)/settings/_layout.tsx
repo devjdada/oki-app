@@ -1,6 +1,6 @@
-import React from 'react';
 import { Tabs } from 'expo-router';
 import { User, Shield, Palette, AlertTriangle } from 'lucide-react-native';
+import React from 'react';
 import { Platform } from 'react-native';
 
 export default function SettingsLayout() {

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, ScrollView, SafeAreaView, TouchableOpacity, RefreshControl, Platform } from 'react-native';
+import { format } from 'date-fns';
+import { useRouter } from 'expo-router';
 import {
   Truck,
   Users,
@@ -11,14 +11,14 @@ import {
   Activity,
   ArrowUpRight
 } from 'lucide-react-native';
-import Animated, { FadeInDown, FadeInRight } from 'react-native-reanimated';
-import { useRouter } from 'expo-router';
-import { format } from 'date-fns';
 import { useColorScheme } from 'nativewind';
+import React, { useState, useEffect } from 'react';
+import { View, Text, ScrollView, SafeAreaView, TouchableOpacity, RefreshControl, Platform } from 'react-native';
+import Animated, { FadeInDown, FadeInRight } from 'react-native-reanimated';
 
+import AppLogo from '../../../components/AppLogo';
 import api from '../../../lib/api';
 import { useAuthStore } from '../../../store/auth';
-import AppLogo from '../../../components/AppLogo';
 
 export default function FleetDashboardScreen() {
   const router = useRouter();
@@ -179,6 +179,7 @@ function StatCard({ label, value, icon, color, delay }: any) {
     emerald: 'bg-emerald-50 dark:bg-emerald-900/20',
     purple: 'bg-purple-50 dark:bg-purple-900/20'
   };
+
   return (
     <Animated.View
       entering={FadeInDown.delay(delay)}

@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import { View, Text, ScrollView, SafeAreaView, KeyboardAvoidingView, Platform, TouchableOpacity } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Mail, Lock, ArrowLeft } from 'lucide-react-native';
+import React, { useState } from 'react';
+import { View, Text, ScrollView, SafeAreaView, KeyboardAvoidingView, Platform, TouchableOpacity } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import AppButton from '../../components/AppButton';
 import AppInput from '../../components/AppInput';
 import AppLogo from '../../components/AppLogo';
 
 import api from '../../lib/api';
-import { useAuthStore } from '../../store/auth';
 import { saveUser } from '../../lib/authStorage';
+import { useAuthStore } from '../../store/auth';
 
 export default function LoginScreen() {
   const router = useRouter();
@@ -24,6 +24,7 @@ export default function LoginScreen() {
   const handleLogin = async () => {
     if (!email || !password) {
       setError('Please fill in all fields');
+
       return;
     }
 

@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, ScrollView, SafeAreaView, TouchableOpacity, RefreshControl, Modal, ActivityIndicator } from 'react-native';
+import { format } from 'date-fns/format';
 import { 
   ClipboardList, 
   Plus, 
@@ -14,12 +13,13 @@ import {
   ChevronRight,
   X
 } from 'lucide-react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, ScrollView, SafeAreaView, TouchableOpacity, RefreshControl, Modal, ActivityIndicator } from 'react-native';
 import Animated, { FadeInDown, FadeInRight } from 'react-native-reanimated';
-import { format } from 'date-fns/format';
 
-import api from '../../../lib/api';
 import AppButton from '../../../components/AppButton';
 import AppInput from '../../../components/AppInput';
+import api from '../../../lib/api';
 
 export default function WorkOrdersScreen() {
   const [loading, setLoading] = useState(true);
@@ -65,10 +65,12 @@ export default function WorkOrdersScreen() {
   const handleSubmit = async () => {
     if (!equipmentId || !description) {
       alert('Please select equipment and provide a description');
+
       return;
     }
 
     setFormLoading(true);
+
     try {
       await api.post('/staff/work-orders', {
         equipment_id: equipmentId,

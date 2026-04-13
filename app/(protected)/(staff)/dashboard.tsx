@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, ScrollView, SafeAreaView, TouchableOpacity, RefreshControl, Platform } from 'react-native';
+import { format } from 'date-fns/format';
+import * as Location from 'expo-location';
+import { useRouter } from 'expo-router';
 import {
   Users,
   Clock,
@@ -14,15 +15,14 @@ import {
   Timer,
   ClipboardList
 } from 'lucide-react-native';
-import Animated, { FadeInDown, FadeInRight } from 'react-native-reanimated';
-import * as Location from 'expo-location';
-import { useRouter } from 'expo-router';
-import { format } from 'date-fns/format';
 import { useColorScheme } from 'nativewind';
+import React, { useState, useEffect } from 'react';
+import { View, Text, ScrollView, SafeAreaView, TouchableOpacity, RefreshControl, Platform } from 'react-native';
+import Animated, { FadeInDown, FadeInRight } from 'react-native-reanimated';
 
+import AppLogo from '../../../components/AppLogo';
 import api from '../../../lib/api';
 import { useAuthStore } from '../../../store/auth';
-import AppLogo from '../../../components/AppLogo';
 
 export default function DashboardScreen() {
   const router = useRouter();
@@ -54,9 +54,10 @@ export default function DashboardScreen() {
   useEffect(() => {
     fetchData();
     (async () => {
-      let { status } = await Location.requestForegroundPermissionsAsync();
+      const { status } = await Location.requestForegroundPermissionsAsync();
+
       if (status === 'granted') {
-        let loc = await Location.getCurrentPositionAsync({});
+        const loc = await Location.getCurrentPositionAsync({});
         setLocation({
           lat: loc.coords.latitude,
           lng: loc.coords.longitude
@@ -252,6 +253,7 @@ function StatCard({ label, value, icon, color, delay }: any) {
     amber: 'bg-amber-50 dark:bg-amber-900/20',
     blue: 'bg-blue-50 dark:bg-blue-900/20'
   };
+
   return (
     <Animated.View
       entering={FadeInDown.delay(delay)}

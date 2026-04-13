@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { View, Text, ScrollView, SafeAreaView, KeyboardAvoidingView, Platform, TouchableOpacity } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Mail, Lock, User, ArrowLeft } from 'lucide-react-native';
+import React, { useState } from 'react';
+import { View, Text, ScrollView, SafeAreaView, KeyboardAvoidingView, Platform, TouchableOpacity } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import AppButton from '../../components/AppButton';
 import AppInput from '../../components/AppInput';
@@ -19,11 +19,13 @@ export default function RegisterScreen() {
   const handleRegister = async () => {
     if (!name || !email || !password || !confirmPassword) {
       setError('Please fill in all fields');
+
       return;
     }
 
     if (password !== confirmPassword) {
       setError('Passwords do not match');
+
       return;
     }
 

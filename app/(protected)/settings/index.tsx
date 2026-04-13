@@ -1,3 +1,4 @@
+import { User, Shield, Trash2, PenTool, CheckCircle2, AlertCircle } from 'lucide-react-native';
 import React, { useState, useEffect, useRef } from 'react';
 import {
   View,
@@ -11,12 +12,11 @@ import {
   ActivityIndicator
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { User, Shield, Trash2, PenTool, CheckCircle2, AlertCircle } from 'lucide-react-native';
-import { useAuthStore } from '../../../store/auth';
-import api, { API_URL } from '../../../lib/api';
-import AppInput from '../../../components/AppInput';
-import AppButton from '../../../components/AppButton';
 import SignatureCanvas from 'react-native-signature-canvas';
+import AppButton from '../../../components/AppButton';
+import AppInput from '../../../components/AppInput';
+import api, { API_URL } from '../../../lib/api';
+import { useAuthStore } from '../../../store/auth';
 
 export default function ProfileSettingsScreen() {
   const { user, setUser } = useAuthStore();

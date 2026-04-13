@@ -1,8 +1,8 @@
-import React from 'react';
 import { Tabs } from 'expo-router';
 import { Users, Clock, ShieldCheck, Briefcase, CalendarDays } from 'lucide-react-native';
-import { Platform } from 'react-native';
 import { useColorScheme } from 'nativewind';
+import React from 'react';
+import { Platform } from 'react-native';
 
 export default function StaffManagementLayout() {
   const { colorScheme } = useColorScheme();

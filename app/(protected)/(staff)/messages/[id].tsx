@@ -1,3 +1,13 @@
+import { format } from 'date-fns/format';
+import { useRouter, useLocalSearchParams } from 'expo-router';
+import { 
+  ChevronLeft, 
+  Send, 
+  Globe, 
+  User,
+  Clock,
+  MoreVertical
+} from 'lucide-react-native';
 import React, { useState, useEffect, useRef } from 'react';
 import { 
   View, 
@@ -11,17 +21,7 @@ import {
   ActivityIndicator,
   Alert
 } from 'react-native';
-import { 
-  ChevronLeft, 
-  Send, 
-  Globe, 
-  User,
-  Clock,
-  MoreVertical
-} from 'lucide-react-native';
-import { useRouter, useLocalSearchParams } from 'expo-router';
 import Animated, { FadeIn, SlideInRight } from 'react-native-reanimated';
-import { format } from 'date-fns/format';
 
 import api from '../../../../lib/api';
 import { useAuthStore } from '../../../../store/auth';
@@ -73,7 +73,9 @@ export default function MessageDetailScreen() {
   }, [thread]);
 
   const handleSendReply = async () => {
-    if (!replyBody.trim()) return;
+    if (!replyBody.trim()) {
+return;
+}
 
     try {
       setSending(true);
@@ -146,6 +148,7 @@ export default function MessageDetailScreen() {
         >
           {thread.map((msg: any, index: number) => {
             const isMe = msg.sender_id === user?.id;
+
             return (
               <Animated.View 
                 key={msg.id}

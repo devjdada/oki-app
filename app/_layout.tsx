@@ -1,11 +1,11 @@
 import { Stack } from "expo-router";
 import { useEffect } from "react";
 import "../global.css";
+import { getUser } from "../lib/authStorage";
+import storage from "../lib/storage";
 import { useAuthStore } from "../store/auth";
 import { useColorScheme } from "nativewind";
-import storage from "../lib/storage";
 
-import { getUser } from "../lib/authStorage";
 
 export default function RootLayout() {
   const { setUser, setToken, setLoading } = useAuthStore();
@@ -16,6 +16,7 @@ export default function RootLayout() {
       try {
         // Initialize Theme
         const savedTheme = await storage.getItem('theme_preference');
+
         if (savedTheme) {
           setColorScheme(savedTheme as 'light' | 'dark' | 'system');
         }

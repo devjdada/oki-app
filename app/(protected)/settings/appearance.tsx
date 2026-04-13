@@ -1,3 +1,5 @@
+import { Palette, Sun, Moon, Monitor, Check } from 'lucide-react-native';
+import { useColorScheme } from 'nativewind';
 import React, { useEffect, useState } from 'react';
 import {
   View,
@@ -5,10 +7,8 @@ import {
   ScrollView,
   TouchableOpacity
 } from 'react-native';
-import { Palette, Sun, Moon, Monitor, Check } from 'lucide-react-native';
-import { useColorScheme } from 'nativewind';
-import storage from '../../../lib/storage';
 import Animated, { FadeInDown, Layout } from 'react-native-reanimated';
+import storage from '../../../lib/storage';
 
 export default function AppearanceSettingsScreen() {
   const { colorScheme, setColorScheme } = useColorScheme();
@@ -17,6 +17,7 @@ export default function AppearanceSettingsScreen() {
   useEffect(() => {
     const loadTheme = async () => {
       const savedTheme = await storage.getItem('theme_preference');
+
       if (savedTheme) {
         setActiveTheme(savedTheme as any);
       }

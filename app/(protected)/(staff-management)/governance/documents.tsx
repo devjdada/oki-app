@@ -1,8 +1,8 @@
+import { useRouter } from 'expo-router';
+import { FolderPlus, ChevronLeft, Search, FileText, MoreVertical, Plus } from 'lucide-react-native';
 import React from 'react';
 import { View, Text, ScrollView, SafeAreaView, TouchableOpacity } from 'react-native';
-import { FolderPlus, ChevronLeft, Search, FileText, MoreVertical, Plus } from 'lucide-react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
-import { useRouter } from 'expo-router';
 
 export default function DocumentsScreen() {
   const router = useRouter();

@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
-import { View, Text, SafeAreaView } from 'react-native';
 import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
+import React, { useEffect } from 'react';
+import { View, Text, SafeAreaView } from 'react-native';
 import Animated, { 
   FadeInDown, 
   FadeInUp, 
@@ -13,10 +14,9 @@ import Animated, {
 } from 'react-native-reanimated';
 import AppButton from '../components/AppButton';
 import AppLogo from '../components/AppLogo';
-import { StatusBar } from 'expo-status-bar';
 
-import { useAuthStore } from '../store/auth';
 import { getUser } from '../lib/authStorage';
+import { useAuthStore } from '../store/auth';
 
 export default function IntroScreen() {
   const router = useRouter();

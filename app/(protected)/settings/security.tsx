@@ -1,3 +1,4 @@
+import { Shield, Lock, Smartphone, FileText, ChevronRight, X, CheckCircle2, AlertTriangle } from 'lucide-react-native';
 import React, { useState, useEffect } from 'react';
 import {
   View,
@@ -10,11 +11,10 @@ import {
   Modal,
   TouchableOpacity
 } from 'react-native';
-import { Shield, Lock, Smartphone, FileText, ChevronRight, X, CheckCircle2, AlertTriangle } from 'lucide-react-native';
-import api from '../../../lib/api';
-import AppInput from '../../../components/AppInput';
-import AppButton from '../../../components/AppButton';
 import { WebView } from 'react-native-webview';
+import AppButton from '../../../components/AppButton';
+import AppInput from '../../../components/AppInput';
+import api from '../../../lib/api';
 
 export default function SecuritySettingsScreen() {
   const [passwordData, setPasswordData] = useState({
@@ -56,6 +56,7 @@ export default function SecuritySettingsScreen() {
   const handleUpdatePassword = async () => {
     if (passwordData.password !== passwordData.password_confirmation) {
       Alert.alert('Error', 'New passwords do not match');
+
       return;
     }
 
@@ -87,7 +88,9 @@ export default function SecuritySettingsScreen() {
   };
 
   const handleConfirmTfa = async () => {
-    if (!confirmationCode) return;
+    if (!confirmationCode) {
+return;
+}
 
     try {
       setConfirmingTfa(true);

@@ -1,3 +1,12 @@
+import { useRouter } from 'expo-router';
+import { 
+  ChevronLeft, 
+  Send, 
+  Users, 
+  Globe, 
+  User as UserIcon,
+  X
+} from 'lucide-react-native';
 import React, { useState, useEffect } from 'react';
 import { 
   View, 
@@ -11,20 +20,11 @@ import {
   KeyboardAvoidingView,
   Platform
 } from 'react-native';
-import { 
-  ChevronLeft, 
-  Send, 
-  Users, 
-  Globe, 
-  User as UserIcon,
-  X
-} from 'lucide-react-native';
-import { useRouter } from 'expo-router';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 
+import AppButton from '../../../../components/AppButton';
 import api from '../../../../lib/api';
 import { useAuthStore } from '../../../../store/auth';
-import AppButton from '../../../../components/AppButton';
 
 export default function ComposeMessageScreen() {
   const router = useRouter();
@@ -62,16 +62,19 @@ export default function ComposeMessageScreen() {
   const handleSend = async () => {
     if (!form.subject.trim() || !form.body.trim()) {
       Alert.alert('Validation Error', 'Please fill in both subject and message body.');
+
       return;
     }
 
     if (form.target_type === 'individual' && !form.receiver_id) {
       Alert.alert('Validation Error', 'Please select a recipient.');
+
       return;
     }
 
     if (form.target_type === 'department' && !form.department_id) {
       Alert.alert('Validation Error', 'Please select a department.');
+
       return;
     }
 

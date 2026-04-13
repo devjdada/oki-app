@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { View, Text, ScrollView, SafeAreaView, TouchableOpacity, Alert } from 'react-native';
+import { useRouter } from 'expo-router';
 import { 
   User, 
   Mail, 
@@ -12,11 +11,12 @@ import {
   Bell,
   Settings
 } from 'lucide-react-native';
-import Animated, { FadeInDown } from 'react-native-reanimated';
-import { useRouter } from 'expo-router';
-import { useAuthStore } from '../../../store/auth';
 import { useColorScheme } from 'nativewind';
+import React, { useState } from 'react';
+import { View, Text, ScrollView, SafeAreaView, TouchableOpacity, Alert } from 'react-native';
+import Animated, { FadeInDown } from 'react-native-reanimated';
 import AppButton from '../../../components/AppButton';
+import { useAuthStore } from '../../../store/auth';
 
 export default function ProfileScreen() {
   const router = useRouter();

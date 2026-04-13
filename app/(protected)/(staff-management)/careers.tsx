@@ -1,8 +1,8 @@
+import { Briefcase, MapPin, Clock, ChevronRight, Plus } from 'lucide-react-native';
+import { useColorScheme } from 'nativewind';
 import React from 'react';
 import { View, Text, ScrollView, SafeAreaView, TouchableOpacity } from 'react-native';
-import { Briefcase, MapPin, Clock, ChevronRight, Plus } from 'lucide-react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
-import { useColorScheme } from 'nativewind';
 
 export default function CareersScreen() {
   const { colorScheme } = useColorScheme();

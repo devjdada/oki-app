@@ -1,7 +1,7 @@
+import { Contact, Phone, Mail, MapPin, ChevronRight, Globe } from 'lucide-react-native';
+import { useColorScheme } from 'nativewind';
 import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, TouchableOpacity, ActivityIndicator, RefreshControl, Linking } from 'react-native';
-import { useColorScheme } from 'nativewind';
-import { Contact, Phone, Mail, MapPin, ChevronRight, Globe } from 'lucide-react-native';
 import api from '../../../lib/api';
 
 export default function VendorsScreen() {

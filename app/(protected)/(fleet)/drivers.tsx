@@ -1,8 +1,8 @@
+import { Search, Filter, Users, ChevronRight, Phone, Mail, Award, Calendar } from 'lucide-react-native';
+import { useColorScheme } from 'nativewind';
 import React, { useState, useEffect } from 'react';
 import { View, Text, ScrollView, SafeAreaView, TouchableOpacity, TextInput, RefreshControl } from 'react-native';
-import { Search, Filter, Users, ChevronRight, Phone, Mail, Award, Calendar } from 'lucide-react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
-import { useColorScheme } from 'nativewind';
 import api from '../../../lib/api';
 
 export default function DriversScreen() {

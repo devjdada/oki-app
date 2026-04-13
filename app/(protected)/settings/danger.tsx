@@ -1,3 +1,5 @@
+import { useRouter } from 'expo-router';
+import { AlertTriangle, Trash2, X, ShieldAlert, LogOut } from 'lucide-react-native';
 import React, { useState } from 'react';
 import {
   View,
@@ -9,12 +11,10 @@ import {
   KeyboardAvoidingView,
   Platform
 } from 'react-native';
-import { AlertTriangle, Trash2, X, ShieldAlert, LogOut } from 'lucide-react-native';
-import { useAuthStore } from '../../../store/auth';
-import { useRouter } from 'expo-router';
-import api from '../../../lib/api';
-import AppInput from '../../../components/AppInput';
 import AppButton from '../../../components/AppButton';
+import AppInput from '../../../components/AppInput';
+import api from '../../../lib/api';
+import { useAuthStore } from '../../../store/auth';
 
 export default function DangerZoneScreen() {
   const { logout } = useAuthStore();
@@ -26,6 +26,7 @@ export default function DangerZoneScreen() {
   const handleDeleteAccount = async () => {
     if (!password) {
       Alert.alert('Error', 'Please enter your password to confirm deletion');
+
       return;
     }
 

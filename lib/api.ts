@@ -22,12 +22,14 @@ const api = axios.create({
 api.interceptors.request.use(async (config) => {
   try {
     const token = useAuthStore.getState().token;
+
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
   } catch (error) {
     console.error('Error fetching token from state', error);
   }
+
   return config;
 });
 
@@ -39,6 +41,7 @@ api.interceptors.response.use(
       // Clear store on authentication error
       useAuthStore.getState().logout();
     }
+
     return Promise.reject(error);
   }
 );
