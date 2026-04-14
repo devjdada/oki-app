@@ -57,7 +57,7 @@ export default function IntroScreen() {
       -1,
       true
     );
-  }, []);
+  }, [floatingValue]);
 
   const animatedImageStyle = useAnimatedStyle(() => {
     return {
@@ -85,6 +85,7 @@ export default function IntroScreen() {
             className="w-full aspect-square max-h-[300px]"
           >
             <Image
+              // eslint-disable-next-line @typescript-eslint/no-require-imports
               source={require('../assets/images/onboarding.png')}
               contentFit="contain"
               className="w-full h-full"

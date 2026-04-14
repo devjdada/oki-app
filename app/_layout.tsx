@@ -1,10 +1,10 @@
-import { Stack } from "expo-router";
+import { useColorScheme } from "nativewind";
 import { useEffect } from "react";
+import { Stack } from "expo-router";
 import "../global.css";
 import { getUser } from "../lib/authStorage";
 import storage from "../lib/storage";
 import { useAuthStore } from "../store/auth";
-import { useColorScheme } from "nativewind";
 
 
 export default function RootLayout() {

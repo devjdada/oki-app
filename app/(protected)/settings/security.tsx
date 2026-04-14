@@ -1,4 +1,4 @@
-import { Shield, Lock, Smartphone, FileText, ChevronRight, X, CheckCircle2, AlertTriangle } from 'lucide-react-native';
+import { Shield, Lock, Smartphone, FileText, X, AlertTriangle } from 'lucide-react-native';
 import React, { useState, useEffect } from 'react';
 import {
   View,
@@ -80,7 +80,7 @@ export default function SecuritySettingsScreen() {
       setQrData(response.data.data);
       setQrModalVisible(true);
       await fetchTfaStatus();
-    } catch (error) {
+    } catch {
       Alert.alert('Error', 'Failed to initialize Two-Factor Authentication');
     } finally {
       setLoadingTfa(false);
@@ -99,7 +99,7 @@ return;
       setConfirmationCode('');
       await fetchTfaStatus();
       Alert.alert('Success', 'Two-Factor Authentication enabled successfully');
-    } catch (error) {
+    } catch {
       Alert.alert('Error', 'Invalid confirmation code');
     } finally {
       setConfirmingTfa(false);
@@ -121,7 +121,7 @@ return;
               await api.delete('/staff/two-factor-disable');
               await fetchTfaStatus();
               Alert.alert('Success', '2FA disabled');
-            } catch (error) {
+            } catch {
               Alert.alert('Error', 'Failed to disable 2FA');
             } finally {
               setLoadingTfa(false);
@@ -137,7 +137,7 @@ return;
       const response = await api.get('/staff/two-factor-recovery-codes');
       setRecoveryCodes(response.data.data.codes);
       setShowRecoveryModal(true);
-    } catch (error) {
+    } catch {
       Alert.alert('Error', 'Failed to fetch recovery codes');
     }
   };
