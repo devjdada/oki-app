@@ -17,7 +17,7 @@ import {
 } from 'lucide-react-native';
 import { useColorScheme } from 'nativewind';
 import React, { useState, useEffect } from 'react';
-import { View, Text, ScrollView, SafeAreaView, TouchableOpacity, RefreshControl, Platform } from 'react-native';
+import { View, Text, ScrollView, SafeAreaView, TouchableOpacity, RefreshControl, Platform, Alert } from 'react-native';
 import Animated, { FadeInDown, FadeInRight } from 'react-native-reanimated';
 
 import AppLogo from '../../../components/AppLogo';
@@ -51,19 +51,37 @@ export default function DashboardScreen() {
     }
   };
 
+  const getCurrentLocation = async () => {
+    try {
+      const { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        return { error: 'Permission to access location was denied' };
+      }
+
+      const enabled = await Location.hasServicesEnabledAsync();
+      if (!enabled) {
+        return { error: 'Location services are disabled' };
+      }
+
+      const loc = await Location.getCurrentPositionAsync({
+        accuracy: Location.Accuracy.Balanced,
+      });
+
+      const coords = {
+        lat: loc.coords.latitude,
+        lng: loc.coords.longitude
+      };
+      setLocation(coords);
+      return { coords };
+    } catch (err) {
+      console.error('Error getting location:', err);
+      return { error: 'Could not fetch location' };
+    }
+  };
+
   useEffect(() => {
     fetchData();
-    (async () => {
-      const { status } = await Location.requestForegroundPermissionsAsync();
-
-      if (status === 'granted') {
-        const loc = await Location.getCurrentPositionAsync({});
-        setLocation({
-          lat: loc.coords.latitude,
-          lng: loc.coords.longitude
-        });
-      }
-    })();
+    getCurrentLocation();
   }, []);
 
   const onRefresh = () => {
@@ -74,16 +92,33 @@ export default function DashboardScreen() {
   const handleClockIn = async () => {
     try {
       setLoading(true);
+      
+      let currentLoc = location;
+      
+      // If we don't have a location, try to get it now
+      if (!currentLoc) {
+        const result = await getCurrentLocation();
+        if (result.error) {
+          Alert.alert('Location Required', result.error + '. Please ensure GPS is enabled and permissions are granted.');
+          setLoading(false);
+          return;
+        }
+        currentLoc = result.coords;
+      }
+
       await api.post('/attendance/clock-in', {
         staff_id: user?.staff?.id,
         clock_in_time: new Date().toISOString(),
-        latitude: location?.lat,
-        longitude: location?.lng
+        latitude: currentLoc?.lat,
+        longitude: currentLoc?.lng
       });
+      
       fetchData();
-    } catch (err) {
+      Alert.alert('Success', 'You have clocked in successfully.');
+    } catch (err: any) {
       console.error('Clock in error:', err);
-      alert('Failed to clock in. Please ensure location is enabled.');
+      const errorMessage = err.response?.data?.message || 'Failed to clock in. Please try again.';
+      Alert.alert('Clock In Failed', errorMessage);
     } finally {
       setLoading(false);
     }

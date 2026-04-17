@@ -4,11 +4,11 @@ import { useAuthStore } from '../store/auth';
 
 // Use 10.0.2.2 for Android emulator to reach localhost on host machine
 // Use localhost for iOS simulator
-const API_URL = Platform.OS === 'android' 
-  ? 'http://10.0.2.2:8000/api/v1' 
+const API_URL = Platform.OS === 'android'
+  ? 'https://oki.wchapel.com/api/v1'
   : Platform.OS === 'web'
-    ? 'http://localhost:8000/api/v1'
-    : 'http://192.168.0.160:8000/api/v1';
+    ? 'https://oki.wchapel.com/api/v1'
+    : 'https://oki.wchapel.com/api/v1';
 
 const api = axios.create({
   baseURL: API_URL,

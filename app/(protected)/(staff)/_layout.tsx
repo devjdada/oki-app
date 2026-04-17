@@ -1,27 +1,30 @@
 import { Tabs } from 'expo-router';
-import { LayoutDashboard, Calendar, ClipboardList, User, MessageSquare, ChartNetwork } from 'lucide-react-native';
+import { Calendar, ClipboardList, LayoutDashboard, MessageSquare, User } from 'lucide-react-native';
+import { useColorScheme } from 'nativewind';
 import React from 'react';
-import { View, Platform } from 'react-native';
+import { Platform } from 'react-native';
 
 export default function StaffLayout() {
+  const { colorScheme } = useColorScheme();
+  const isDark = colorScheme === 'dark';
   return (
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: '#003399',
-        tabBarInactiveTintColor: '#94a3b8',
+        tabBarActiveTintColor: isDark ? '#60a5fa' : '#003399',
+        tabBarInactiveTintColor: isDark ? '#64748b' : '#94a3b8',
         tabBarStyle: {
           height: Platform.OS === 'ios' ? 88 : 68,
           paddingTop: 10,
           paddingBottom: Platform.OS === 'ios' ? 28 : 10,
-          backgroundColor: '#ffffff',
+          backgroundColor: isDark ? '#0f172a' : '#ffffff',
           borderTopWidth: 1,
-          borderTopColor: '#f1f5f9',
+          borderTopColor: isDark ? '#1e293b' : '#f1f5f9',
           elevation: 0,
           shadowOpacity: 0,
         },
         tabBarLabelStyle: {
-          fontSize: 10,
+          fontSize: 9,
           fontWeight: '900',
           textTransform: 'uppercase',
           letterSpacing: 0.5,
